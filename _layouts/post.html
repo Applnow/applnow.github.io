@@ -9,17 +9,42 @@ layout: default
 </div>
 
 <div class="related">
-  <h2>Related Posts</h2>
+  <h2>相关文章</h2>
   <ul class="related-posts">
-    {% for post in site.related_posts limit:3 %}
-      <li>
-        <h3>
-          <a href="{{ post.url }}">
-            {{ post.title }}
-            <small>{{ post.date | date_to_string }}</small>
-          </a>
-        </h3>
-      </li>
+    {% comment %}
+      显示相同分类的文章，最多3篇，排除当前文章
+    {% endcomment %}
+    {% assign same_category_count = 0 %}
+    {% for related_post in site.posts %}
+      {% if related_post.url != page.url %}
+        {% for category in related_post.categories %}
+          {% if page.categories contains category %}
+            {% assign same_category_count = same_category_count | plus: 1 %}
+            {% if same_category_count <= 3 %}
+            <li>
+              <h3>
+                <a href="{{ related_post.url }}">
+                  {{ related_post.title }}
+                  <small>{{ related_post.date | date_to_string }}</small>
+                </a>
+              </h3>
+            </li>
+            {% endif %}
+            {% break %} {% comment %} 找到一个匹配分类就跳出内层循环 {% endcomment %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
     {% endfor %}
+    
+    {% comment %} 如果没有相同分类的文章，不显示任何内容 {% endcomment %}
   </ul>
+  
+  {% comment %} 如果没有相关文章，隐藏整个相关文章部分 {% endcomment %}
+  {% if same_category_count == 0 %}
+    <style>
+      .related {
+        display: none;
+      }
+    </style>
+  {% endif %}
 </div>
