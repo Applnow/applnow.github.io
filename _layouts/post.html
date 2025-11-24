@@ -5,6 +5,7 @@ layout: default
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
   <span class="post-date">{{ page.date | date_to_string }}</span>
+  
   {{ content }}
 </div>
 
@@ -12,7 +13,7 @@ layout: default
   <h2>相关文章</h2>
   <ul class="related-posts">
     {% comment %}
-      显示相同分类的文章，最多3篇，排除当前文章
+    显示相同分类的文章，最多3篇，排除当前文章
     {% endcomment %}
     {% assign same_category_count = 0 %}
     {% for related_post in site.posts %}
@@ -21,25 +22,22 @@ layout: default
           {% if page.categories contains category %}
             {% assign same_category_count = same_category_count | plus: 1 %}
             {% if same_category_count <= 3 %}
-            <li>
-              <h3>
-                <a href="{{ related_post.url }}">
-                  {{ related_post.title }}
-                  <small>{{ related_post.date | date_to_string }}</small>
-                </a>
-              </h3>
-            </li>
+              <li>
+                <h3>
+                  <a href="{{ related_post.url }}">
+                    {{ related_post.title }}
+                    <small>{{ related_post.date | date_to_string }}</small>
+                  </a>
+                </h3>
+              </li>
             {% endif %}
-            {% break %} {% comment %} 找到一个匹配分类就跳出内层循环 {% endcomment %}
+            {% break %}
           {% endif %}
         {% endfor %}
       {% endif %}
     {% endfor %}
-    
-    {% comment %} 如果没有相同分类的文章，不显示任何内容 {% endcomment %}
   </ul>
   
-  {% comment %} 如果没有相关文章，隐藏整个相关文章部分 {% endcomment %}
   {% if same_category_count == 0 %}
     <style>
       .related {
