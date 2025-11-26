@@ -25,3 +25,7 @@ version:          0.1
 
 github:
   repo:           https://github.com/poole/hyde
+include:
+  - images
+  - public/images
+destination: _site

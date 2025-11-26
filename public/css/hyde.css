@@ -286,7 +286,7 @@ a.sidebar-nav-item:focus {
   font-size: 1.25rem;
   font-weight: bold;
   order: 1; /* 确保标题在第一位置 */
-  font-family: "KaiTi", "楷体", "STKaiti",serif;
+  font-family: "KaiTi", "楷体", "STKaiti","BiauKai", "DFKai-SB", "Microsoft JhengHei", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Arial,serif;
 }
 
 .posts .post .post-title a:hover {
@@ -333,7 +333,7 @@ a.sidebar-nav-item:focus {
   margin-left: 1rem; /* 缩进与圆点对齐 */
   padding-left: 0.5rem;
   border-left: 2px solid #f0f0f0;
-  font-family: "FangSong","仿宋","Fangsong",serif;
+  font-family: "FangSong","仿宋","Fangsong", "Microsoft JhengHei", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Arial,serif;
   font-weight: bold;
 }
 /* === 最新文章特殊样式 === */
@@ -354,7 +354,7 @@ a.sidebar-nav-item:focus {
   border-radius: 1px;
 }
 .content {
-  font-family: "SimSun", "宋体", "Songti", serif; /* 正文使用宋体 */
+  font-family: "SimSun", "宋体", "Songti", "Microsoft JhengHei", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Arial, serif; /* 正文使用宋体 */
   font-weight: bold; /* 加粗 */
   line-height: 1.7;
 }
@@ -434,4 +434,78 @@ a.sidebar-nav-item:focus {
   .posts .post:first-child {
     padding-top: 1.25rem;
   }
+}
+  .posts .post .post-title a,
+  .posts .post .post-excerpt,
+  .content {
+    text-shadow: none; /* 移除文字阴影，移动端渲染更好 */
+  }
+}
+/* 修复版：确保路径正确且不覆盖侧边栏 */
+body {
+    position: relative;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url("/images/background.jpg");
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    opacity: 0.1; /* 很淡的背景 */
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* 确保内容区域可读 */
+.content {
+    background: transparent; /* 改为透明 */
+    position: relative;
+    z-index: 1;
+}
+.sidebar {
+    background: rgba(32, 32, 32, 0.95);
+}
+/* 移除文章区域的背景色 */
+.post, .page {
+    background: transparent; /* 改为透明 */
+    /* 或者保留轻微透明度 */
+    /* background: rgba(255, 255, 255, 0.1); */
+}
+
+/* 移除分页器的背景色 */
+.pagination {
+    background: transparent;
+}
+
+/* 确保文章标题区域透明 */
+.post-title {
+    background: transparent;
+}
+
+/* 文章摘要区域透明 */
+.post-excerpt {
+    background: transparent;
+    border-left: 2px solid rgba(240, 240, 240, 0.3); /* 改为半透明边框 */
+}
+/* 增强文字对比度 */
+.post-title a {
+    color: #222; /* 更深的颜色 */
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8); /* 文字阴影增强可读性 */
+}
+
+.post-excerpt {
+    color: #333; /* 深灰色 */
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+/* 分类标签保持轻微背景但半透明 */
+.posts .post .category {
+    background: rgba(240, 240, 240, 0.7); /* 半透明背景 */
+    color: #333;
 }
