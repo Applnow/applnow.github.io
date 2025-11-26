@@ -509,3 +509,55 @@ body::after {
     background: rgba(240, 240, 240, 0.7); /* 半透明背景 */
     color: #333;
 }
+/* 翻页器样式优化 */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eaeaea;
+}
+
+.pagination-item {
+    text-decoration: none;
+    font-size: 1.5rem; /* 增大箭头大小 */
+    font-weight: bold;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+}
+
+.pagination-item:hover:not(span) {
+    background: #333;
+    color: white;
+    border-color: #333;
+}
+
+.pagination-item.older {
+    order: 2; /* 确保 → 在右边 */
+}
+
+.pagination-item.newer {
+    order: 1; /* 确保 ← 在左边 */
+}
+
+/* 禁用状态的箭头 */
+.pagination-item[disabled], 
+.pagination-item:disabled {
+    color: #ccc;
+    border-color: #eee;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* 移动端优化 */
+@media (max-width: 48em) {
+    .pagination-item {
+        font-size: 1.25rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
