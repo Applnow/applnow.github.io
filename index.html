@@ -29,19 +29,18 @@ title: Home
   {% endfor %}
 </div>
 
-<!-- 替换原来的翻页器代码 -->
 <div class="pagination">
   {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">→</a>
+    <a class="pagination-item older" href="{{ '/page' | append: paginator.next_page | absolute_url }}">→</a>
   {% else %}
     <span class="pagination-item older">→</span>
   {% endif %}
   
   {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}">←</a>
+    {% if paginator.previous_page == 1 %}
+      <a class="pagination-item newer" href="{{ '/' | absolute_url }}">←</a>
     {% else %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">←</a>
+      <a class="pagination-item newer" href="{{ '/page' | append: paginator.previous_page | absolute_url }}">←</a>
     {% endif %}
   {% else %}
     <span class="pagination-item newer">←</span>

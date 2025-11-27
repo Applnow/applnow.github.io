@@ -13,32 +13,80 @@ layout: default
   <h2>相关文章</h2>
   <ul class="related-posts">
     {% comment %}
-    显示相同分类的文章，最多3篇，排除当前文章
+    显示分类完全相同的文章，按时间顺序，显示当前文章前后各一篇
     {% endcomment %}
-    {% assign same_category_count = 0 %}
-    {% for related_post in site.posts %}
-      {% if related_post.url != page.url %}
-        {% for category in related_post.categories %}
-          {% if page.categories contains category %}
-            {% assign same_category_count = same_category_count | plus: 1 %}
-            {% if same_category_count <= 3 %}
-              <li>
-                <h3>
-                  <a href="{{ related_post.url }}">
-                    {{ related_post.title }}
-                    <small>{{ related_post.date | date_to_string }}</small>
-                  </a>
-                </h3>
-              </li>
-            {% endif %}
+    
+    {% comment %} 第一步：找到所有分类完全相同的文章（包括当前文章）{% endcomment %}
+    {% assign exact_match_posts = "" | split: "," %}
+    
+    {% for post in site.posts %}
+      {% comment %} 检查分类是否完全相同 {% endcomment %}
+      {% assign same_categories = true %}
+      
+      {% comment %} 先检查数量是否相同 {% endcomment %}
+      {% if post.categories.size != page.categories.size %}
+        {% assign same_categories = false %}
+      {% else %}
+        {% comment %} 再检查每个分类是否都相同 {% endcomment %}
+        {% for category in post.categories %}
+          {% unless page.categories contains category %}
+            {% assign same_categories = false %}
             {% break %}
-          {% endif %}
+          {% endunless %}
         {% endfor %}
       {% endif %}
+      
+      {% if same_categories %}
+        {% assign exact_match_posts = exact_match_posts | push: post %}
+      {% endif %}
     {% endfor %}
+    
+    {% comment %} 第二步：按日期排序 {% endcomment %}
+    {% assign sorted_posts = exact_match_posts | sort: 'date' %}
+    
+    {% comment %} 第三步：找到当前文章在排序列表中的位置 {% endcomment %}
+    {% assign current_index = -1 %}
+    {% for post in sorted_posts %}
+      {% if post.url == page.url %}
+        {% assign current_index = forloop.index0 %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    
+    {% comment %} 第四步：显示前后各一篇文章 {% endcomment %}
+    {% if current_index >= 0 %}
+      {% comment %} 前一篇（时间较早） {% endcomment %}
+      {% assign previous_index = current_index | minus: 1 %}
+      {% if previous_index >= 0 %}
+        {% assign previous_post = sorted_posts[previous_index] %}
+        <li>
+          <h3>
+            <a href="{{ previous_post.url | absolute_url }}">
+              ← {{ previous_post.title }}
+              <small>{{ previous_post.date | date_to_string }}</small>
+            </a>
+          </h3>
+        </li>
+      {% endif %}
+      
+      {% comment %} 后一篇（时间较晚） {% endcomment %}
+      {% assign next_index = current_index | plus: 1 %}
+      {% if next_index < sorted_posts.size %}
+        {% assign next_post = sorted_posts[next_index] %}
+        <li>
+          <h3>
+            <a href="{{ next_post.url | absolute_url }}">
+              {{ next_post.title }} →
+              <small>{{ next_post.date | date_to_string }}</small>
+            </a>
+          </h3>
+        </li>
+      {% endif %}
+    {% endif %}
   </ul>
   
-  {% if same_category_count == 0 %}
+  {% comment %} 如果没有相关文章（只有当前文章自己），隐藏整个部分 {% endcomment %}
+  {% if sorted_posts.size <= 1 %}
     <style>
       .related {
         display: none;

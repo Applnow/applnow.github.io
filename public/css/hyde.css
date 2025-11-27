@@ -327,7 +327,7 @@ a.sidebar-nav-item:focus {
 
 /* 文章摘要样式 */
 .posts .post .post-excerpt {
-  color: #555;
+  color: #444;
   line-height: 1.6;
   font-size: 0.95rem;
   margin-left: 1rem; /* 缩进与圆点对齐 */
@@ -354,6 +354,7 @@ a.sidebar-nav-item:focus {
   border-radius: 1px;
 }
 .content {
+  color: #222;
   font-family: "SimSun", "宋体", "Songti", "Microsoft JhengHei", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Arial, serif; /* 正文使用宋体 */
   font-weight: bold; /* 加粗 */
   line-height: 1.7;
@@ -377,7 +378,7 @@ a.sidebar-nav-item:focus {
   font-family: "PT Sans", Helvetica, Arial, sans-serif;
   font-size: 1.25rem;
   margin-bottom: 1rem;
-  color: #333;
+  color: #111;
 }
 
 .related-posts {
@@ -397,7 +398,7 @@ a.sidebar-nav-item:focus {
 
 .related-posts a {
   text-decoration: none;
-  color: #333;
+  color: #111;
   display: block;
 }
 
@@ -457,7 +458,7 @@ body::after {
     background-size: cover;
     background-position: center right;
     background-repeat: no-repeat;
-    opacity: 0.1; /* 很淡的背景 */
+    opacity: 0.175; /* 很淡的背景 */
     z-index: -1;
     pointer-events: none;
 }
