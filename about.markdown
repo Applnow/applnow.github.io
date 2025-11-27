@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 自我陈述 - About Me
+title: About Me
 permalink: /about/
 ---
 
