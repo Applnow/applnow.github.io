@@ -10,7 +10,7 @@
     </div>
 
 <nav class="sidebar-nav">
-  <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
+  <a class="sidebar-nav-item{% if page.url == '/' %} active{% endif %}" href="/">Home</a>
 
   {% comment %}
   动态生成侧边栏导航，包含有 `layout: page` 的页面
