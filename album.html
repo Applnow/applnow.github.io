@@ -1,7 +1,9 @@
 ---
+
 layout: page
 title: Album
 permalink: /album/
+
 ---
 
 这里存放一些好看的图片。
@@ -11,7 +13,7 @@ permalink: /album/
 </div>
 
 <div id="lightbox" class="lightbox">
-  <span class="close">&times;</span>
+  <span class="close">×</span>
   <img class="lightbox-content" id="lightbox-img">
   <div class="caption" id="lightbox-caption"></div>
   <a class="prev">&#10094;</a>
@@ -130,7 +132,7 @@ permalink: /album/
   .album-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
-  
+
   .lightbox-content {
     max-width: 95%;
     max-height: 70%;
@@ -152,11 +154,20 @@ document.addEventListener('DOMContentLoaded', function() {
     { src: '/public/css/images/background.jpg', caption: 'Koishi Background' },
     { src: '/public/css/images/Yamaxanadu.png', caption: 'Yamaxanadu' },
     { src: '/public/css/images/reimu.jpg', caption: 'Hakurei Jinja' },
-    { src: '/public/css/images/壁纸1.png', caption: 'Aya' }
+    { src: '/public/css/images/壁纸1.png', caption: 'Aya' },
+    { src: '/public/css/images/draculas.jpg', caption: 'Draculas' },
+    { src: '/public/css/images/Knowledge.jpg', caption: 'Knowledge' },
+    { src: '/public/css/images/Library.jpg', caption: 'ヴワル魔法図書館' },
+    { src: '/public/css/images/Mutsumi.jpg', caption: 'Mutsumi' },
+    { src: '/public/css/images/Patchouli Knowledge.jpg', caption: 'Patchouli Knowledge.jpg' },
+    { src: '/public/css/images/Personal Preference.jpg', caption: 'Personal Preference' },
+    { src: '/public/css/images/Sakura.jpg', caption: 'Sakura' },
+    { src: '/public/css/images/Tianyi.jpg', caption: 'Tianyi Luo' },
+    { src: '/public/css/images/Doremi.jpg', caption: 'Doremi' }
   ];
-  
+
   let currentIndex = 0;
-  
+
   // 渲染图片网格
   function renderAlbum() {
     images.forEach((img, index) => {
@@ -166,14 +177,14 @@ document.addEventListener('DOMContentLoaded', function() {
         <img src="${img.src}" alt="${img.caption}" loading="lazy">
         <div class="album-caption">${img.caption}</div>
       `;
-      
+
       // 添加点击事件
       item.addEventListener('click', () => openLightbox(index));
-      
+
       albumGrid.appendChild(item);
     });
   }
-  
+
   // 打开灯箱
   function openLightbox(index) {
     currentIndex = index;
@@ -181,32 +192,32 @@ document.addEventListener('DOMContentLoaded', function() {
     lightbox.style.display = 'block';
     document.body.style.overflow = 'hidden'; // 防止背景滚动
   }
-  
+
   // 关闭灯箱
   function closeLightbox() {
     lightbox.style.display = 'none';
     document.body.style.overflow = 'auto';
   }
-  
+
   // 更新灯箱内容
   function updateLightbox() {
     const currentImage = images[currentIndex];
     lightboxImg.src = currentImage.src;
     lightboxCaption.textContent = currentImage.caption;
   }
-  
+
   // 上一张
   function prevImage() {
     currentIndex = (currentIndex - 1 + images.length) % images.length;
     updateLightbox();
   }
-  
+
   // 下一张
   function nextImage() {
     currentIndex = (currentIndex + 1) % images.length;
     updateLightbox();
   }
-  
+
   // 键盘导航
   function handleKeydown(e) {
     if (lightbox.style.display === 'block') {
@@ -215,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (e.key === 'ArrowRight') nextImage();
     }
   }
-  
+
   // 事件监听
   closeBtn.addEventListener('click', closeLightbox);
   prevBtn.addEventListener('click', prevImage);
@@ -224,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.target === lightbox) closeLightbox();
   });
   document.addEventListener('keydown', handleKeydown);
-  
+
   // 初始化相册
   renderAlbum();
 });

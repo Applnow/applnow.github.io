@@ -355,7 +355,7 @@ a.sidebar-nav-item:focus {
 }
 .content {
   color: #222;
-  font-family: "SimSun", "宋体", "Songti", "Microsoft JhengHei", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Arial, serif; /* 正文使用宋体 */
+  font-family: 'Noto Serif SC',"SimSun", "宋体", "Songti", "Microsoft JhengHei", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Arial, serif; /* 正文使用宋体 */
   font-weight: bold; /* 加粗 */
   line-height: 1.7;
 }
@@ -560,5 +560,27 @@ body::after {
     .pagination-item {
         font-size: 1.25rem;
         padding: 0.4rem 0.8rem;
+    }
+}
+/* 右上角固定图片 - 修改版 (位于遮罩下) */
+#corner-image-container {
+    position: fixed; /* 固定定位 */
+    bottom: 20px;      /* 距顶部距离，可调 */
+    right: 20px;    /* 距右侧距离，可调 */
+    width: 300px;   /* 缩小宽度 (原为500px) */
+    height: 300px;  /* 缩小高度 (原为500px) */
+    z-index: -2;    /* 关键！设置为小于遮罩z-index(-1)的值，使其位于遮罩之下 */
+    pointer-events: none; /* 鼠标事件穿透，不影响操作 */
+}
+#corner-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 完整显示图片，不会被拉伸 */
+    opacity: 0.8; /* 可选：如果觉得图片太显眼，可以稍微降低不透明度 */
+}
+/* 移动端隐藏此图片 */
+@media (max-width: 48em) {
+    #corner-image-container {
+        display: none;
     }
 }
