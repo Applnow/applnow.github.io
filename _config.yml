@@ -10,7 +10,7 @@ relative_permalinks: false
 # Setup
 title:            '轻文学独立裁判'
 tagline:          'Lighterature Independent Verdiction'
-description:      "I am choosing literary works can be categorized as 'light', alongside light novels with literary value."
+description:      "I am selecting works of literature that qualify as 'light,' alongside light novels with literary value."
 url:              http://applnow.github.io
 baseurl:          /
 
