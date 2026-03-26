@@ -79,7 +79,7 @@ html {
 .sidebar-about h1 {
   color: #fff;
   margin-top: 0;
-  font-family: "Abril Fatface", serif;
+  font-family: "Abril Fatface","Noto Serif SC",serif;
   font-size: 3.25rem;
 }
 
@@ -286,7 +286,7 @@ a.sidebar-nav-item:focus {
   font-size: 1.25rem;
   font-weight: bold;
   order: 1; /* 确保标题在第一位置 */
-  font-family: "KaiTi", "楷体", "STKaiti","BiauKai", "DFKai-SB", "Microsoft JhengHei", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Arial,serif;
+  font-family: "KaiTi", "楷体", "STKaiti","BiauKai", "DFKai-SB", "Noto Serif SC","Microsoft JhengHei", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Arial,serif;
 }
 
 .posts .post .post-title a:hover {
@@ -333,7 +333,7 @@ a.sidebar-nav-item:focus {
   margin-left: 1rem; /* 缩进与圆点对齐 */
   padding-left: 0.5rem;
   border-left: 2px solid #f0f0f0;
-  font-family: "FangSong","仿宋","Fangsong", "Microsoft JhengHei", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Arial,serif;
+  font-family: "FangSong","仿宋","Fangsong", "Noto Serif SC","Microsoft JhengHei", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Arial,serif;
   font-weight: bold;
 }
 /* === 最新文章特殊样式 === */
