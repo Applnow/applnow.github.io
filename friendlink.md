@@ -10,7 +10,7 @@ permalink: /friendlink/
 - [Bobownyao's nest](https://bobownyao.github.io/) - 百合爱好者，暖州中学难民.
  
 ## 添加你的博客
-如果你想将你的博客添加到这里，请发送邮件到abc2961973747@163.com .
+如果你想将你的博客添加到这里，请发送邮件到applnow@126.com .
 
 <style>
 .friend-list {

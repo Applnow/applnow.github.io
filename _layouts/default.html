@@ -12,6 +12,14 @@
     <div class="content container">
       {{ content }}
     </div>
-
+    <!-- 全局灯箱（Lightbox） -->
+    <div id="global-lightbox" class="lightbox">
+      <span class="close">&times;</span>
+      <img class="lightbox-content" id="lightbox-img">
+      <div class="caption" id="lightbox-caption"></div>
+      <a class="prev">&#10094;</a>
+      <a class="next">&#10095;</a>
+   </div>
+   <script src="{{ '/assets/lightbox.js' | relative_url }}"></script>
   </body>
 </html>
