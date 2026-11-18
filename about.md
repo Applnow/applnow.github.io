@@ -4,7 +4,7 @@ title: About Me
 permalink: /about/
 ---
 <div class="profile-avatar">
-  <img src="/images/your-avatar-87cb8efa.webp" alt="我的头像">
+  <img src="https://pub-1808029ad8d1476e96cf6889e47c0bf2.r2.dev/blog/your-avatar-87cb8efa.webp" alt="我的头像">
 </div>
 <div class="about-content">
   <h1><span class="highlight">那年Apple雪の避难所</span></h1>
