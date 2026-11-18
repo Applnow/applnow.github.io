@@ -3,6 +3,6 @@
   "bucket": "your-bucket-name",
   "access_key_id": "your-access-key-id",
   "secret_access_key": "your-secret-access-key",
-  "public_base": "https://img.your-domain.com",
+  "public_base": "https://pub-xxxx.r2.dev",
   "prefix": "blog"
 }

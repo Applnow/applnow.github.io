@@ -109,11 +109,22 @@ tools/.venv/bin/python tools/upload-images.py --apply            # 上传并回�
 
 ### 首次配置
 
-1. Cloudflare 控制台建一个 R2 存储桶，记下账户 ID（endpoint 是
-   `https://<账户ID>.r2.cloudflarestorage.com`）。
+1. Cloudflare 控制台建一个 R2 存储桶，记下**桶名**和**账户 ID**
+   （S3 上传地址是 `https://<账户ID>.r2.cloudflarestorage.com`）。
 2. 建 API 令牌，权限只需 **Object Read & Write**，范围限定到那个桶。
-3. 绑一个自定义域名指向该桶，作为 `public_base`。**不要用 `r2.dev` 那个域名**——
-   那是受限的测试域名，有速率限制，不适合生产。
+3. 决定 `public_base`——也就是图片被读取时的地址。**它和你的站点域名无关**：
+   页面里的 `<img src="https://某处/foo.webp">` 由浏览器单独去取，
+   所以即使网站跑在 `applnow.github.io`、自己没买域名，也不影响使用。
+   三种选法：
+
+   | 选法 | 地址形如 | 代价 |
+   |---|---|---|
+   | **`r2.dev`（默认，推荐先这样）** | `https://pub-xxxx.r2.dev` | 免费、零配置桶里开个开关就有；官方标注为受限测试域名，超出「每秒数百请求」会收到 `429`，带宽也可能被限流。博客量级碰不到 |
+   | **Worker + `workers.dev`** | `https://xxx.workers.dev` | 免费、不需要域名，10 万请求/天。更稳妥，需部署一次，模板见 `tools/worker-r2.js` |
+   | 自定义域名 | `https://img.你的域名.com` | 效果最好（能开缓存/WAF），但要求你拥有一个已托管到 Cloudflare 的域名，不算零成本 |
+
+   换地址的成本很低：`public_base` 改一行、重跑一次 `--apply` 就行。
+   回填以内容哈希为键，同一张图不会重复上传。
 4. 复制 `_img/r2.json.example` 为 `_img/r2.json` 并填好字段：
 
    ```json
@@ -122,12 +133,15 @@ tools/.venv/bin/python tools/upload-images.py --apply            # 上传并回�
      "bucket": "你的桶名",
      "access_key_id": "...",
      "secret_access_key": "...",
-     "public_base": "https://你的自定义域名",
+     "public_base": "https://pub-xxxx.r2.dev",
      "prefix": "blog"
    }
    ```
 
 `_img/r2.json` 已在 `.gitignore` 里，密钥不会进版本库。
+
+**排查**：`public_base` 下的地址返回 404，可能是桶里还没有那个对象，也可能是桶的
+公开访问没开。两者返回的页面一样，分不出来——传一张图再看一次即可确认。
 
 ### 日常流程
 
