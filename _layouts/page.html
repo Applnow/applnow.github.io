@@ -6,3 +6,10 @@ layout: default
   <h1 class="page-title">{{ page.title }}</h1>
   {{ content }}
 </div>
+
+{% comment %}
+评论区（giscus）：独立页面默认都带评论区，将来新增的 resource 等页面只要用
+`layout: page` 就会自动带上。个别页面不需要时，在其 front matter 里写
+`comments: false`（相册页就是这么关掉的）。
+{% endcomment %}
+{% include comments.html %}

@@ -16,7 +16,8 @@
 ├── album.html           # /album/ 相册，front matter 中 album: true 触发 assets/album.js
 ├── friendlink.md        # /friendlink/
 ├── _includes/
-│   ├── head.html        # <head>，引入 assets/css 下三个样式表与 lightbox.css
+│   ├── head.html        # <head>，引入 assets/css 下各样式表
+│   ├── comments.html    # giscus 评论区（文章页与独立页面共用）
 │   └── sidebar.html     # 侧栏导航
 ├── _layouts/
 │   ├── default.html     # 全站骨架，输出唯一的全局灯箱容器
@@ -24,7 +25,7 @@
 │   └── post.html        # 文章
 ├── _posts/              # 文章（18 篇）
 ├── assets/              # 全部前端资源
-│   ├── css/             # poole.css / syntax.css / hyde.css / lightbox.css
+│   ├── css/             # poole.css / syntax.css / hyde.css / lightbox.css / giscus.css
 │   ├── images/          # 相册图片（14 张）
 │   ├── lightbox.js      # 全局灯箱：文章内图片与相册共用
 │   ├── album.js         # 相册图片清单与网格渲染
@@ -62,6 +63,55 @@
   那样会静默回退到文件名日期并丢失时间。
 - 构建产物 `_site/` 与缓存 `.jekyll-cache/`（含任意嵌套子目录中的同名目录）均已加入 `.gitignore`。
   `_img/incoming/`、`_img/originals/`、`_img/uploaded.json` 是图片工作流的中间产物，同样不入库。
+
+## 评论系统（giscus）
+
+评论由 [giscus](https://giscus.app/zh-CN) 提供：基于 GitHub Discussions，无数据库、
+无服务端、永久免费，评论数据就存在本仓库的 Discussions 里。访客用 GitHub 账号
+授权登录后即可评论，并可就每条评论点 emoji 反应（即评论点赞）。
+
+关于「给文章本身点赞」：giscus 没有这个入口——discussion 主贴的反应数只能只读
+获取，且给主贴写 reaction 需要 token，得自建后端才做得到。所以本站只有评论点赞。
+
+### 挂载范围
+
+- 文章页与独立页面都带评论区，分别挂载在 `_layouts/post.html`、`_layouts/page.html`，
+  内容都在 `_includes/comments.html`。
+- 今后新增独立页面（如计划中的 resource 页）只要写 `layout: page`，评论区自动生效。
+- 单个页面不想要评论，在其 front matter 里写 `comments: false`（相册页 `album.html`
+  已如此处理）。
+
+### 配置
+
+仓库侧的准备已经做完：**Settings → General → Features** 勾选 Discussions，
+并安装 [giscus app](https://github.com/apps/giscus) 授权本仓库。
+
+两个 ID 记在 `_config.yml` 的 `giscus` 段里。换仓库或换分类时重新取一次：
+
+```bash
+curl -s "https://giscus.app/api/discussions/categories?repo=Applnow/applnow.github.io"
+```
+
+返回里的 `repositoryId` 即 `repo_id`，`categories` 中对应分类的 `id` 即 `category_id`。
+`category_id` 留空时页面整体不渲染评论区，不会留下空标题——所以 GitHub 侧还没配好时，
+页面不会出现一个点不动的「评论」标题。
+
+分类用的是默认的 **Announcements**：该类型的 discussion 只有 maintainer 能新建，
+而 giscus bot 作为 GitHub App 仍有创建权限——既能自动为每篇文章开帖，
+又挡得住访客乱开 discussion。
+
+### 可调项
+
+`_config.yml` 的 `giscus` 段一一对应 giscus 的 `data-*` 参数：
+
+| 配置项 | 当前值 | 说明 |
+| --- | --- | --- |
+| `mapping` | `pathname` | 用页面路径关联 discussion，改文章标题不会丢评论 |
+| `strict` | `0` | 允许标题模糊匹配 |
+| `reactions_enabled` | `1` | `1` 开启评论点赞（GitHub emoji 反应） |
+| `input_position` | `bottom` | 评论输入框在列表下方 |
+| `theme` | `light` | 站点正文为白色底，故用浅色主题 |
+| `lang` | `zh-CN` | 界面语言 |
 
 ## 图片处理
 

@@ -1,0 +1,51 @@
+{%- comment -%}
+giscus 评论区
+
+为什么用它：本站是 GitHub Pages 静态站，没有服务端，评论只能托管给第三方。
+giscus 免数据库、免运维、永久免费，评论数据存在本仓库的 Discussions 里；
+访客用 GitHub 账号授权登录后即可评论，并可就每条评论点 emoji 反应（即评论点赞，
+由下面的 data-reactions-enabled 控制，giscus 原生支持，无需额外后端）。
+评论 iframe 由 client.js 自动注入到下面的 .giscus 容器里。
+
+挂载位置：_layouts/post.html（文章页）与 _layouts/page.html（独立页面）。
+今后新增独立页面只要用 layout: page 就会自动带上评论区；
+个别页面不想要评论时，在其 front matter 里写 comments: false 即可。
+
+配置集中在 _config.yml 的 giscus 段，各项含义见 README「评论系统」一节。
+repo_id 与 category_id 是 giscus 的必填项，任一为空就整块不渲染，这样在 GitHub
+侧尚未配置完成时，页面不会留下一个空的“评论”标题。注意 Liquid 里空字符串是
+真值，判断空缺必须显式与 '' 比较，不能只写 if gc.category_id。
+{%- endcomment -%}
+{%- assign gc = site.giscus -%}
+{%- assign gc_repo_id = gc.repo_id | default: '' | strip -%}
+{%- assign gc_category_id = gc.category_id | default: '' | strip -%}
+{%- if gc_repo_id != '' and gc_category_id != '' and page.comments != false %}
+<section class="comments" id="comments">
+  <h2 class="comments-title">评论</h2>
+
+  <div class="giscus"></div>
+
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ gc.repo }}"
+          data-repo-id="{{ gc_repo_id }}"
+          data-category="{{ gc.category }}"
+          data-category-id="{{ gc_category_id }}"
+          data-mapping="{{ gc.mapping | default: 'pathname' }}"
+          data-strict="{{ gc.strict | default: '0' }}"
+          data-reactions-enabled="{{ gc.reactions_enabled | default: '1' }}"
+          data-emit-metadata="0"
+          data-input-position="{{ gc.input_position | default: 'bottom' }}"
+          data-theme="{{ gc.theme | default: 'light' }}"
+          data-lang="{{ gc.lang | default: 'zh-CN' }}"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+  <noscript>
+    评论需要浏览器启用 JavaScript；也可以直接到
+    <a href="https://github.com/{{ gc.repo }}/discussions">GitHub Discussions</a>
+    参与讨论。
+  </noscript>
+</section>
+{%- endif %}

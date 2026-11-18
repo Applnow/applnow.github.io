@@ -1,0 +1,42 @@
+/*
+ * giscus 评论区
+ *
+ * 与 .related（相关文章）沿用同一套分隔语言：1px #eaeaea 上边框 + 2rem 间距，
+ * 让评论区看起来仍是正文的一部分。配色跟随站点：正文底色为纯白
+ * （见 poole.css 的 body），所以 giscus 主题取 light，见 _config.yml。
+ */
+
+.comments {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eaeaea;
+}
+
+.comments-title {
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* 高度塌陷兜底：giscus 注入 iframe 前这里没有内容，给它一个最小占位高度，
+   避免评论加载完成后页面突然跳一下 */
+.giscus {
+  min-height: 12rem;
+}
+
+/* giscus 注入的 iframe */
+.giscus-frame {
+  width: 100%;
+  border: none;
+}
+
+.comments noscript {
+  display: block;
+  color: #9a9a9a;
+  font-size: .875rem;
+}
+
+.comments noscript a {
+  color: #268bd2;
+}

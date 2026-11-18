@@ -23,6 +23,21 @@ version:          0.7
 
 github:
   repo:           https://github.com/Applnow/applnow.github.io.git
+
+# 评论（giscus，基于 GitHub Discussions）。各项含义与获取方式见 README「评论系统」。
+# repo_id 与 category_id 为必填项；任一为空时页面整体不渲染评论区。
+giscus:
+  repo:              'Applnow/applnow.github.io'
+  repo_id:           'R_kgDOQKugtQ'
+  category:          'Announcements'
+  category_id:       'DIC_kwDOQKugtc4DLZhD'
+  mapping:           'pathname'
+  strict:            '0'
+  reactions_enabled: '1'         # 1 开启评论点赞（GitHub emoji 反应）
+  input_position:    'bottom'
+  theme:             'light'
+  lang:              'zh-CN'
+
 include:
   - images
 destination: _site

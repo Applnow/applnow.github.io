@@ -94,3 +94,9 @@ layout: default
     </style>
   {% endif %}
 </div>
+
+{% comment %}
+评论区（giscus）：内容与配置见 _includes/comments.html。
+想在单篇文章关闭评论，在该文 front matter 里写 `comments: false`。
+{% endcomment %}
+{% include comments.html %}
