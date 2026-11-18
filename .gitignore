@@ -30,7 +30,10 @@ __pycache__/
 # 图床密钥（照 _img/r2.json.example 填好后放这里）
 _img/r2.json
 
-# 图片工作流的中间产物（压缩后的 WebP 已在仓库里，这三份不必入库）
+# 图片与字体工作流的中间产物（压缩后的 WebP 已在仓库里，这些不必入库）
 _img/incoming/
 _img/originals/
 _img/uploaded.json
+
+# 字体子集脚本的中间产物（下载的分片与字符清单，见 tools/fonts.py）
+_fonts/

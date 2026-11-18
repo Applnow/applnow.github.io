@@ -1,0 +1,30 @@
+---
+# 空 front matter：让 Jekyll 处理本文件里的 {{ }} 与 relative_url
+---
+/* 本地字体，由 tools/fonts.py 自动生成，请勿手工编辑。
+ * 来源：noto-cjk 的 Noto Serif SC 可变字体，按站内 2525 个用字子集化。
+ * 单文件 859,560 字节（839.4 KB），覆盖 400/600/700 全字重；
+ * 与 hyde.css 的 'Noto Serif SC' 同名，字体链其余部分作为缺字回退。
+ * 由 _includes/head.html 引入，须排在 hyde.css 之前。
+ */
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('{{ '/assets/fonts/noto-serif-sc-c49370b7b3b4.woff2' | relative_url }}') format('woff2');
+}
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('{{ '/assets/fonts/noto-serif-sc-c49370b7b3b4.woff2' | relative_url }}') format('woff2');
+}
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('{{ '/assets/fonts/noto-serif-sc-c49370b7b3b4.woff2' | relative_url }}') format('woff2');
+}
