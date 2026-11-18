@@ -170,6 +170,25 @@ def collect(doc_path: str) -> list[tuple[str, str]]:
     return found
 
 
+# 默认扫描范围：站点页面 + 文章。README/AGENT 是给人和 agent 看的文档，
+# 里面的示例路径不是真图片，扫进来只会刷无谓的警告。
+SKIP_DOCS = {"README.md", "AGENT.md"}
+
+
+def default_targets() -> list[str]:
+    targets = []
+    for name in sorted(os.listdir(ROOT)):
+        if name in SKIP_DOCS:
+            continue
+        if os.path.isfile(os.path.join(ROOT, name)) and name.endswith(SCAN_EXTS):
+            targets.append(os.path.join(ROOT, name))
+    posts = os.path.join(ROOT, "_posts")
+    if os.path.isdir(posts):
+        targets += [os.path.join(posts, f) for f in sorted(os.listdir(posts))
+                    if f.endswith(SCAN_EXTS)]
+    return targets
+
+
 def backup(path: str) -> None:
     try:
         rel = os.path.relpath(path, ROOT)
@@ -187,13 +206,7 @@ def main() -> int:
     ap.add_argument("--files", nargs="*", help="只处理这些文件（默认全仓库扫描）")
     args = ap.parse_args()
 
-    docs = args.files or [
-        os.path.join(dp, f)
-        for dp, dirs, files in os.walk(ROOT)
-        for f in files
-        if f.endswith(SCAN_EXTS)
-        for dirs[:] in [[d for d in dirs if d not in (".git", "_site", "node_modules", "_img", "tools")]]
-    ]
+    docs = args.files or default_targets()
     docs = [d if os.path.isabs(d) else os.path.join(ROOT, d) for d in docs]
 
     cfg = load_config() if args.apply else None
