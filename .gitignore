@@ -26,3 +26,6 @@ Thumbs.db
 # 本地工具环境（用 README 里的命令重建）
 tools/.venv/
 __pycache__/
+
+# 图床密钥（照 _img/r2.json.example 填好后放这里）
+_img/r2.json

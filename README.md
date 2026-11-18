@@ -91,9 +91,49 @@ bundle install
 bundle exec jekyll serve
 ```
 
-## 待定
+## 图片托管（Cloudflare R2）
 
-- **图片托管**：已确定迁往 Cloudflare R2（对象存储，出网免费、免费额度内零成本），
-  配套一个「上传后自动回填正文链接」的脚本，细节待 R2 凭据到位后落地。
-  在此之前图片仍留在仓库内，引用方式不变。
+图片正文里照常写本地路径，跑一条命令上传到 R2，脚本把链接回填成外链：
 
+```bash
+tools/.venv/bin/python tools/upload-images.py                    # 预报：只看会传哪些
+tools/.venv/bin/python tools/upload-images.py --apply            # 上传并回填
+```
+
+默认只预报。两条硬约束是刻意设计的：
+
+- **不动方括号里的说明文字**。`![说明](url)` 的说明会进 `img.alt`，
+  而灯箱下方的图注正是从 alt 取的——脚本只替换 URL 部分。
+- **跑第二遍不会重复上传**。账本记在 `_img/uploaded.json`，键是文件内容的哈希，
+  所以改名、换目录、同一张图被多篇文章引用，都不会二次上传。
+
+### 首次配置
+
+1. Cloudflare 控制台建一个 R2 存储桶，记下账户 ID（endpoint 是
+   `https://<账户ID>.r2.cloudflarestorage.com`）。
+2. 建 API 令牌，权限只需 **Object Read & Write**，范围限定到那个桶。
+3. 绑一个自定义域名指向该桶，作为 `public_base`。**不要用 `r2.dev` 那个域名**——
+   那是受限的测试域名，有速率限制，不适合生产。
+4. 复制 `_img/r2.json.example` 为 `_img/r2.json` 并填好字段：
+
+   ```json
+   {
+     "endpoint": "https://<账户ID>.r2.cloudflarestorage.com",
+     "bucket": "你的桶名",
+     "access_key_id": "...",
+     "secret_access_key": "...",
+     "public_base": "https://你的自定义域名",
+     "prefix": "blog"
+   }
+   ```
+
+`_img/r2.json` 已在 `.gitignore` 里，密钥不会进版本库。
+
+### 日常流程
+
+1. 把图片放进仓库（`images/` 或 `assets/images/`），正文写 `![说明](/images/xxx.png)`。
+2. 跑 `--apply`。脚本会压缩、按统一规则改名、上传、回填链接。
+3. 提交正文改动即可，图片不必再提交。
+
+**注意**：本机没有 ruby/Jekyll，`tools/` 里的脚本只能用 `tools/.venv/bin/python` 跑，
+无法在这里验证 Jekyll 构建结果。改动后请在本地跑一次 `bundle exec jekyll serve`。

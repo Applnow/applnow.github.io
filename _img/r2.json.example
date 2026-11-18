@@ -1,0 +1,8 @@
+{
+  "endpoint": "https://<账户ID>.r2.cloudflarestorage.com",
+  "bucket": "your-bucket-name",
+  "access_key_id": "your-access-key-id",
+  "secret_access_key": "your-secret-access-key",
+  "public_base": "https://img.your-domain.com",
+  "prefix": "blog"
+}
