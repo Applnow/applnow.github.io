@@ -6,19 +6,19 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!albumGrid) return;
 
     const images = [
-        { src: '/assets/images/background.jpg', caption: 'Koishi Background' },
-        { src: '/assets/images/Yamaxanadu.png', caption: 'Yamaxanadu' },
-        { src: '/assets/images/reimu.jpg', caption: 'Hakurei Jinja' },
-        { src: '/assets/images/壁纸1.png', caption: 'Aya' },
-        { src: '/assets/images/draculas.jpg', caption: 'Draculas' },
-        { src: '/assets/images/Knowledge.jpg', caption: 'Knowledge' },
-        { src: '/assets/images/Library.jpg', caption: 'ヴワル魔法図書館' },
-        { src: '/assets/images/Mutsumi.jpg', caption: 'Mutsumi' },
-        { src: '/assets/images/Patchouli Knowledge.jpg', caption: 'Patchouli Knowledge' },
-        { src: '/assets/images/Personal Preference.jpg', caption: 'Personal Preference' },
-        { src: '/assets/images/Sakura.jpg', caption: 'Sakura' },
-        { src: '/assets/images/Tianyi.jpg', caption: 'Tianyi Luo' },
-        { src: '/assets/images/Doremi.jpg', caption: 'Doremi' }
+        { src: '/assets/images/background-16926d0e.webp', caption: 'Koishi Background' },
+        { src: '/assets/images/yamaxanadu-1ffd80c6.webp', caption: 'Yamaxanadu' },
+        { src: '/assets/images/reimu-af1a580d.webp', caption: 'Hakurei Jinja' },
+        { src: '/assets/images/aya-ac435c3c.webp', caption: 'Aya' },
+        { src: '/assets/images/draculas-3016031e.webp', caption: 'Draculas' },
+        { src: '/assets/images/knowledge-tome-98d0ed7d.webp', caption: 'Knowledge' },
+        { src: '/assets/images/library-6060ee9c.webp', caption: 'ヴワル魔法図書館' },
+        { src: '/assets/images/mutsumi-f6efb346.webp', caption: 'Mutsumi' },
+        { src: '/assets/images/patchouli-knowledge-4608d786.webp', caption: 'Patchouli Knowledge' },
+        { src: '/assets/images/personal-preference-71e44ba9.webp', caption: 'Personal Preference' },
+        { src: '/assets/images/sakura-f817bd27.webp', caption: 'Sakura' },
+        { src: '/assets/images/tianyi-06203f50.webp', caption: 'Tianyi Luo' },
+        { src: '/assets/images/doremi-2bbe6dc2.webp', caption: 'Doremi' }
     ];
 
     images.forEach(function (img) {

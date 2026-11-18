@@ -1,0 +1,254 @@
+{
+  "generated": "migrate_imgs.py",
+  "items": [
+    {
+      "old": "/assets/images/Doremi.jpg",
+      "new": "/assets/images/doremi-2bbe6dc2.webp",
+      "basename_old": "Doremi.jpg",
+      "basename_new": "doremi-2bbe6dc2.webp",
+      "sha1": "2bbe6dc24381eefafee62a28f2f1c3020fbef9fb",
+      "orig_bytes": 174786,
+      "new_bytes": 118542,
+      "size": [
+        750,
+        1333
+      ]
+    },
+    {
+      "old": "/assets/images/Knowledge.jpg",
+      "new": "/assets/images/knowledge-tome-98d0ed7d.webp",
+      "basename_old": "Knowledge.jpg",
+      "basename_new": "knowledge-tome-98d0ed7d.webp",
+      "sha1": "98d0ed7d5b13834ad1c5287bb7328eef11ad2c6d",
+      "orig_bytes": 990157,
+      "new_bytes": 253030,
+      "size": [
+        1896,
+        2720
+      ]
+    },
+    {
+      "old": "/assets/images/Library.jpg",
+      "new": "/assets/images/library-6060ee9c.webp",
+      "basename_old": "Library.jpg",
+      "basename_new": "library-6060ee9c.webp",
+      "sha1": "6060ee9c64b92aede060d9d1ae50e0e57d81676b",
+      "orig_bytes": 271205,
+      "new_bytes": 144906,
+      "size": [
+        2083,
+        1024
+      ]
+    },
+    {
+      "old": "/assets/images/Mutsumi.jpg",
+      "new": "/assets/images/mutsumi-f6efb346.webp",
+      "basename_old": "Mutsumi.jpg",
+      "basename_new": "mutsumi-f6efb346.webp",
+      "sha1": "f6efb346ec2a7e36f1a7004ae6a0728e9950b4a0",
+      "orig_bytes": 304223,
+      "new_bytes": 207980,
+      "size": [
+        1680,
+        1142
+      ]
+    },
+    {
+      "old": "/assets/images/Patchouli Knowledge.jpg",
+      "new": "/assets/images/patchouli-knowledge-4608d786.webp",
+      "basename_old": "Patchouli Knowledge.jpg",
+      "basename_new": "patchouli-knowledge-4608d786.webp",
+      "sha1": "4608d786ce4488497359ec10c74259a2e6be21b8",
+      "orig_bytes": 1446772,
+      "new_bytes": 105924,
+      "size": [
+        928,
+        1232
+      ]
+    },
+    {
+      "old": "/assets/images/Personal Preference.jpg",
+      "new": "/assets/images/personal-preference-71e44ba9.webp",
+      "basename_old": "Personal Preference.jpg",
+      "basename_new": "personal-preference-71e44ba9.webp",
+      "sha1": "71e44ba9a677656f9d63fb47a40b5a1c02840b76",
+      "orig_bytes": 2926469,
+      "new_bytes": 279400,
+      "size": [
+        1620,
+        1682
+      ]
+    },
+    {
+      "old": "/assets/images/Sakura.jpg",
+      "new": "/assets/images/sakura-f817bd27.webp",
+      "basename_old": "Sakura.jpg",
+      "basename_new": "sakura-f817bd27.webp",
+      "sha1": "f817bd27823de9bdc871eb66f85bfe2c38a51794",
+      "orig_bytes": 1845451,
+      "new_bytes": 322956,
+      "size": [
+        2508,
+        3541
+      ]
+    },
+    {
+      "old": "/assets/images/Tianyi.jpg",
+      "new": "/assets/images/tianyi-06203f50.webp",
+      "basename_old": "Tianyi.jpg",
+      "basename_new": "tianyi-06203f50.webp",
+      "sha1": "06203f50dc3ef5c3eba0373bd759d0465f048d58",
+      "orig_bytes": 72246,
+      "new_bytes": 67682,
+      "size": [
+        580,
+        580
+      ]
+    },
+    {
+      "old": "/assets/images/Yamaxanadu.png",
+      "new": "/assets/images/yamaxanadu-1ffd80c6.webp",
+      "basename_old": "Yamaxanadu.png",
+      "basename_new": "yamaxanadu-1ffd80c6.webp",
+      "sha1": "1ffd80c64a0c19e2339017edaa14f36a678aa5f8",
+      "orig_bytes": 2040810,
+      "new_bytes": 261172,
+      "size": [
+        1350,
+        1000
+      ]
+    },
+    {
+      "old": "/assets/images/background.jpg",
+      "new": "/assets/images/background-16926d0e.webp",
+      "basename_old": "background.jpg",
+      "basename_new": "background-16926d0e.webp",
+      "sha1": "16926d0e0e2e38ed085ad3ba8378a86273dcd3d4",
+      "orig_bytes": 170864,
+      "new_bytes": 142334,
+      "size": [
+        1280,
+        1040
+      ]
+    },
+    {
+      "old": "/assets/images/draculas.jpg",
+      "new": "/assets/images/draculas-3016031e.webp",
+      "basename_old": "draculas.jpg",
+      "basename_new": "draculas-3016031e.webp",
+      "sha1": "3016031e85bea3796f2d251137c7326b65000af2",
+      "orig_bytes": 146928,
+      "new_bytes": 125018,
+      "size": [
+        840,
+        1212
+      ]
+    },
+    {
+      "old": "/assets/images/reimu.jpg",
+      "new": "/assets/images/reimu-af1a580d.webp",
+      "basename_old": "reimu.jpg",
+      "basename_new": "reimu-af1a580d.webp",
+      "sha1": "af1a580d1e6f943d00d6856c2ec4c58cb2013370",
+      "orig_bytes": 175566,
+      "new_bytes": 175566,
+      "size": [
+        1440,
+        1140
+      ],
+      "note": "扩展名为 .jpg 但数据实为 WebP，直接沿用原始字节，未重新编码"
+    },
+    {
+      "old": "/assets/images/壁纸1.png",
+      "new": "/assets/images/aya-ac435c3c.webp",
+      "basename_old": "壁纸1.png",
+      "basename_new": "aya-ac435c3c.webp",
+      "sha1": "ac435c3c174e02b0574f8f290d4405e2cb92171d",
+      "orig_bytes": 947732,
+      "new_bytes": 43562,
+      "size": [
+        1440,
+        680
+      ]
+    },
+    {
+      "old": "/images/background.jpg",
+      "new": "/images/background-16926d0e.webp",
+      "basename_old": "background.jpg",
+      "basename_new": "background-16926d0e.webp",
+      "sha1": "16926d0e0e2e38ed085ad3ba8378a86273dcd3d4",
+      "orig_bytes": 170864,
+      "new_bytes": 142334,
+      "size": [
+        1280,
+        1040
+      ]
+    },
+    {
+      "old": "/images/deep-learning-notes.png",
+      "new": "/images/deep-learning-notes-476d6ded.webp",
+      "basename_old": "deep-learning-notes.png",
+      "basename_new": "deep-learning-notes-476d6ded.webp",
+      "sha1": "476d6ded4947407273f673b0f06915b4e9588a82",
+      "orig_bytes": 625852,
+      "new_bytes": 157572,
+      "size": [
+        2148,
+        1278
+      ]
+    },
+    {
+      "old": "/images/kaggle-code.png",
+      "new": "/images/kaggle-code-5396e83f.webp",
+      "basename_old": "kaggle-code.png",
+      "basename_new": "kaggle-code-5396e83f.webp",
+      "sha1": "5396e83ff206a9347358e34e0775567828d626b6",
+      "orig_bytes": 315169,
+      "new_bytes": 123208,
+      "size": [
+        1500,
+        1281
+      ]
+    },
+    {
+      "old": "/images/kaggle-leaderboard.jpg",
+      "new": "/images/kaggle-leaderboard-80fafb0c.webp",
+      "basename_old": "kaggle-leaderboard.jpg",
+      "basename_new": "kaggle-leaderboard-80fafb0c.webp",
+      "sha1": "80fafb0c9ca1f967707ec9cf23daf7d09f1570f0",
+      "orig_bytes": 62450,
+      "new_bytes": 43364,
+      "size": [
+        1620,
+        1080
+      ]
+    },
+    {
+      "old": "/images/latex-example.png",
+      "new": "/images/latex-example-d1c293ae.webp",
+      "basename_old": "latex-example.png",
+      "basename_new": "latex-example-d1c293ae.webp",
+      "sha1": "d1c293ae8a06a58792ab7be27f374cc8e1336e07",
+      "orig_bytes": 46043,
+      "new_bytes": 11728,
+      "size": [
+        639,
+        418
+      ]
+    },
+    {
+      "old": "/images/your-avatar.jpg",
+      "new": "/images/your-avatar-87cb8efa.webp",
+      "basename_old": "your-avatar.jpg",
+      "basename_new": "your-avatar-87cb8efa.webp",
+      "sha1": "87cb8efa559497f95fec95ca709ad681a905a276",
+      "orig_bytes": 210244,
+      "new_bytes": 75876,
+      "size": [
+        800,
+        791
+      ]
+    }
+  ],
+  "hash_basis": "文件名中的哈希取自当前站点文件（WebP）的内容"
+}

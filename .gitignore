@@ -22,3 +22,7 @@ Thumbs.db
 
 # Windows 备用数据流残留（形如 foo.png:Zone.Identifier）
 *:Zone.Identifier
+
+# 本地工具环境（用 README 里的命令重建）
+tools/.venv/
+__pycache__/
