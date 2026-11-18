@@ -1,5 +1,24 @@
-_site
-.sass-cache
-.jekyll-cache
+# Jekyll 构建产物与缓存（带斜杠的写法只匹配目录；**/_site/ 覆盖嵌套子目录里的同名产物，
+# 否则 public/css/_site 这类历史产物会被漏掉）
+_site/
+**/_site/
+.jekyll-cache/
+**/.jekyll-cache/
 .jekyll-metadata
-vendor
+.sass-cache/
+
+# 依赖
+vendor/
+.bundle/
+
+# 编辑器与系统残留
+*.save
+*.orig
+*.bak
+*~
+*.swp
+.DS_Store
+Thumbs.db
+
+# Windows 备用数据流残留（形如 foo.png:Zone.Identifier）
+*:Zone.Identifier
