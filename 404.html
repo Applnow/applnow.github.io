@@ -1,10 +1,64 @@
 ---
 layout: default
 title: "404: Page not found"
-permalink: /404.html
+permalink: /404.html   # 必须显式写：_config.yml 现在是全局 /post/:title/，不写会被套上 /post/
 ---
+
+{% comment %}
+旧链接兜底。本站曾用 `permalink: pretty`，文章 URL 形如
+/文学/创作/2025/11/23/百草-序/（中文段是 Jekyll 对中文文件名的 slugify 结果），
+另有 jekyll-paginate 生成的 /page2/、/page3/；改用 /post/<slug>/ 后，
+GitHub Pages 无法做服务端 301，只能靠本页在客户端把老路径映射到新路径
+（映射表见下面脚本的 OLD）。映射不到的路径会短暂提示后送回首页。
+{% endcomment %}
 
 <div class="page">
   <h1 class="page-title">404: Page not found</h1>
-  <p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. <a href="{{ site.baseurl }}">Head back home</a> to try finding it again.</p>
+  <p class="lead" id="notfound-lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. <a href="{{ site.baseurl }}">Head back home</a> to try finding it again.</p>
 </div>
+
+<script>
+(function () {
+  // 老路径 → 新路径。老路径按当初 pretty 下的实际地址逐条核对过（真名、真日期），
+  // 新文章不要再往这里加，本表只为 2026-11 这次 permalink 迁移服务。
+  var OLD = [
+    ['/文学/创作/2025/11/23/百草-序', '/post/memoir-preface/'],
+    ['/文学/创作/2025/11/23/百草-酢浆草', '/post/memoir-oxalis/'],
+    ['/文学/创作/2025/11/26/百草-风滚草', '/post/memoir-tumbleweed/'],
+    ['/文学/创作/2025/11/26/百草-甘草', '/post/memoir-licorice/'],
+    ['/文学/创作/2025/11/26/百草-蓝草', '/post/memoir-indigo/'],
+    ['/文学/创作/2025/11/26/百草-薰衣草', '/post/memoir-lavender/'],
+    ['/文学/创作/2025/11/26/百草-含羞草', '/post/memoir-mimosa/'],
+    ['/文学/创作/2025/11/26/百草-香草', '/post/memoir-vanilla/'],
+    ['/文学/创作/2025/11/27/百草-烟草', '/post/memoir-tobacco/'],
+    ['/文学/创作/2025/11/27/百草-后记', '/post/memoir-afterword/'],
+    ['/文学/创作/2026/03/07/百草孤篇-白草', '/post/memoir-whitegrass/'],
+    ['/文学/裁判/2025/11/27/关于轻文学', '/post/lighterature/'],
+    ['/文学/裁判/2026/03/19/一次对博尔赫斯的拙劣的模仿', '/post/borges-imitation/'],
+    ['/文学/裁判/2026/03/22/末代萌王', '/post/last-moe-king/'],
+    ['/动漫/裁判/2025/12/06/生涯已阅参考', '/post/life-read-reference/'],
+    ['/随笔/纪念/2026/01/25/拾玖歲生日紀念', '/post/nineteen-birthday/'],
+    ['/历史/论文/2026/03/07/党史论文', '/post/duoyu-de-hua/'],
+    ['/随笔/实务/2026/03/25/队友征集', '/post/cumcm-teammates/'],
+    // 分页页：文章合并进首页后 /pageN/ 不再生成，一律送回首页
+    ['/page2', '/'],
+    ['/page3', '/']
+  ];
+
+  var base = '{{ site.baseurl }}';                       // '/' 或 '/subpath'
+  var path = decodeURIComponent(location.pathname);
+  if (base !== '/' && path.indexOf(base) === 0) path = path.slice(base.length - 1);
+  if (path.length > 1 && path.slice(-1) === '/') path = path.slice(0, -1);  // 兼容是否带尾斜杠
+
+  for (var i = 0; i < OLD.length; i++) {
+    if (OLD[i][0] === path) {
+      location.replace(OLD[i][1] + location.search + location.hash);
+      return;
+    }
+  }
+  // 没有映射：短暂提示后回首页，别让访客停在死页上（本页已 noindex）
+  var tip = document.getElementById('notfound-lead');
+  if (tip) tip.insertAdjacentHTML('beforeend', ' <span>2 秒后返回首页…</span>');
+  setTimeout(function () { location.replace('{{ site.baseurl }}/'); }, 2000);
+})();
+</script>

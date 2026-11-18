@@ -4,7 +4,10 @@ highlighter:      rouge
 safe: true
 
 # Permalinks
-permalink:        pretty
+# 文章 URL 统一为 /post/<english-slug>/：每篇文章在自己 front matter 里写 `slug:`，
+# Jekyll 用 slug 覆盖 :title（中文标题与《》等符号不进 URL）。
+# 独立页面不受影响，它们各自在 front matter 里写了 permalink。
+permalink:        /post/:title/
 
 # Setup
 title:            '轻文学独立裁判'
@@ -16,8 +19,6 @@ baseurl:          /
 
 author:
   name:           'Applnow'
-
-paginate:         7
 
 # Custom vars
 version:          0.7

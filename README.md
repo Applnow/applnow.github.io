@@ -9,8 +9,8 @@
 ├── _config.yml          # 站点配置
 ├── Gemfile              # 依赖（插件经 :jekyll_plugins 组加载）
 ├── Gemfile.lock
-├── index.html           # 首页（layout: default，分页 7 篇）
-├── 404.html
+├── index.html           # 首页（layout: default，列出全部文章，不分页）
+├── 404.html             # 404 页；内置「旧路径 → 新路径」客户端跳转，兼作链接兜底
 ├── atom.xml             # RSS，手写模板（未使用 jekyll-feed）
 ├── about.md             # /about/
 ├── album.html           # /album/ 相册，front matter 中 album: true 触发 assets/album.js
@@ -61,6 +61,13 @@
 - **文章 front matter 的日期**统一为 `date: YYYY-MM-DD HH:MM:SS +0800`。
   注意 Jekyll 不接受 `2025-11-23-21:30:00` 这类用连字符分隔日期与时间的写法，
   那样会静默回退到文件名日期并丢失时间。
+- **文章 URL 由 front matter 的 `slug` 决定**：`_config.yml` 里是 `permalink: /post/:title/`，
+  Jekyll 用 slug 覆盖 `:title`，于是每篇是 `/post/<english-slug>/`（如
+  `/post/life-read-reference/`）。**新文章必须自己写 `slug:`**——全小写、`-` 分隔、
+  不带日期与分类，`《》`、上标、省略号等符号不进 URL；漏写就会退化成
+  `/post/<中文文件名>/` 并被百分号编码。
+- 首页不再分页（`_config.yml` 里没有 `paginate`，`jekyll-paginate` 也没被加载）：
+  `index.html` 直接遍历 `site.posts`，一页铺到底。文章总量大起来之前不必再引入分页。
 - 构建产物 `_site/` 与缓存 `.jekyll-cache/`（含任意嵌套子目录中的同名目录）均已加入 `.gitignore`。
   `_img/incoming/`、`_img/originals/`、`_img/uploaded.json` 是图片工作流的中间产物，同样不入库。
 
