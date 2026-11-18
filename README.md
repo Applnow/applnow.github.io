@@ -131,7 +131,7 @@ tools/.venv/bin/python tools/upload-images.py --apply            # 上传并回�
 
 ### 日常流程
 
-1. 把图片放进仓库（`images/` 或 `assets/images/`），正文写 `![说明](/images/xxx.png)`。
+1. 把图片放进仓库（`images/` 或 `assets/images/`），正文写 `![说明](/images/foo.png)`。
 2. 跑 `--apply`。脚本会压缩、按统一规则改名、上传、回填链接。
 3. 提交正文改动即可，图片不必再提交。
 
