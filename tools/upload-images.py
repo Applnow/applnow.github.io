@@ -102,6 +102,10 @@ def iter_md_images(text: str):
 
 # HTML img 的 src，单双引号都收
 HTML_IMG = re.compile(r"(<img\b[^>]*?\bsrc=)([\"'])([^\"']+)(\2)", re.IGNORECASE)
+# JS 里的图片清单：{ src: '/assets/images/foo.webp', caption: '...' }
+JS_SRC = re.compile(r"\bsrc\s*:\s*([\"'])([^\"']+)(\1)")
+# 默认全仓库扫描时额外带上这些文件（图片清单写在 JS 里，不在正文里）
+EXTRA_TARGETS = ("assets/album.js",)
 
 
 def load_config() -> dict:
@@ -151,11 +155,28 @@ def remote_url(cfg: dict, filename: str) -> str:
     return f"{base}/{prefix + '/' if prefix else ''}{filename}"
 
 
+def iter_js_images(text: str):
+    """收集 JS 里形如 src: '/assets/images/foo.webp' 的本地图片引用，返回 (起, 止) 区间。
+
+    相册的图片清单写在 assets/album.js 的数组里，Markdown/HTML 那两条规则扫不到它。
+    """
+    seen: set[str] = set()
+    for m in JS_SRC.finditer(text):
+        # group(1) 是引号，group(2) 才是路径
+        ref = m.group(2)
+        if ref in seen or not is_local_ref(ref):
+            continue
+        seen.add(ref)
+        yield m.start(2), m.end(2)
+
+
 def collect(doc_path: str) -> list[tuple[str, str]]:
     """返回 [(原始引用, 解析后的磁盘路径)]，按出现顺序去重。"""
     text = open(doc_path, encoding="utf-8").read()
     refs = [text[s:e] for s, e in iter_md_images(text)]
     refs += [m.group(3) for m in HTML_IMG.finditer(text)]
+    if doc_path.endswith(".js"):
+        refs += [text[s:e] for s, e in iter_js_images(text)]
     found, seen = [], set()
     for ref in refs:
         if not is_local_ref(ref):
@@ -186,6 +207,10 @@ def default_targets() -> list[str]:
     if os.path.isdir(posts):
         targets += [os.path.join(posts, f) for f in sorted(os.listdir(posts))
                     if f.endswith(SCAN_EXTS)]
+    for rel in EXTRA_TARGETS:
+        path = os.path.join(ROOT, rel)
+        if os.path.isfile(path):
+            targets.append(path)
     return targets
 
 
