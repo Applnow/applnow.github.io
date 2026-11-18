@@ -2,8 +2,13 @@
 layout: default
 ---
 
+{% comment %}
+首页即完整目录：一次性列出全站文章（site.posts 本身按日期从新到旧），
+不再做分页——翻页已移除，见 _config.yml 与 _includes/head.html 的说明。
+{% endcomment %}
+
 <div class="posts">
-  {% for post in paginator.posts %}
+  {% for post in site.posts %}
   <div class="post">
     <h2 class="post-title">
       <a href="{{ post.url }}">{{ post.title }}</a>
@@ -28,20 +33,7 @@ layout: default
   {% endfor %}
 </div>
 
-<div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ '/page' | append: paginator.next_page | absolute_url }}">→</a>
-  {% else %}
-    <span class="pagination-item older">→</span>
-  {% endif %}
-  
-  {% if paginator.previous_page %}
-    {% if paginator.previous_page == 1 %}
-      <a class="pagination-item newer" href="{{ '/' | absolute_url }}">←</a>
-    {% else %}
-      <a class="pagination-item newer" href="{{ '/page' | append: paginator.previous_page | absolute_url }}">←</a>
-    {% endif %}
-  {% else %}
-    <span class="pagination-item newer">←</span>
-  {% endif %}
-</div>
+{% comment %}
+首页现在是一整页长列表（18 篇起，之后只增不减），底部给一个回顶锚点。
+{% endcomment %}
+<p class="back-to-top"><a href="#top">↑ 回到顶部</a></p>

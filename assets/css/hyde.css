@@ -479,11 +479,6 @@ body::after {
     /* background: rgba(255, 255, 255, 0.1); */
 }
 
-/* 移除分页器的背景色 */
-.pagination {
-    background: transparent;
-}
-
 /* 确保文章标题区域透明 */
 .post-title {
     background: transparent;
@@ -505,62 +500,33 @@ body::after {
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
+/* 首页整页长列表底部的回顶链接（首页不再分页，见 index.html） */
+.back-to-top {
+    margin: 2.5rem 0 0;
+    text-align: right;
+    font-size: 0.95rem;
+}
+
+.back-to-top a {
+    color: #333;
+    text-decoration: none;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid rgba(240, 240, 240, 0.3);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.back-to-top a:hover {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
 /* 分类标签保持轻微背景但半透明 */
 .posts .post .category {
     background: rgba(240, 240, 240, 0.7); /* 半透明背景 */
     color: #333;
-}
-/* 翻页器样式优化 */
-.pagination {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid #eaeaea;
-}
-
-.pagination-item {
-    text-decoration: none;
-    font-size: 1.5rem; /* 增大箭头大小 */
-    font-weight: bold;
-    color: #333;
-    padding: 0.5rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.8); /* 半透明背景 */
-}
-
-.pagination-item:hover:not(span) {
-    background: #333;
-    color: white;
-    border-color: #333;
-}
-
-.pagination-item.older {
-    order: 2; /* 确保 → 在右边 */
-}
-
-.pagination-item.newer {
-    order: 1; /* 确保 ← 在左边 */
-}
-
-/* 禁用状态的箭头 */
-.pagination-item[disabled], 
-.pagination-item:disabled {
-    color: #ccc;
-    border-color: #eee;
-    cursor: not-allowed;
-    background: rgba(255, 255, 255, 0.5);
-}
-
-/* 移动端优化 */
-@media (max-width: 48em) {
-    .pagination-item {
-        font-size: 1.25rem;
-        padding: 0.4rem 0.8rem;
-    }
 }
 /* 右上角固定图片 - 修改版 (位于遮罩下) */
 #corner-image-container {

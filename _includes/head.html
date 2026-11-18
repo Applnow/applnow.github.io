@@ -12,8 +12,8 @@
   {% comment %}
   SEO 元数据由 jekyll-seo-tag 输出：<title>、description、canonical、
   og:*、twitter:card 与 JSON-LD。这里传 title=false 是因为下面手写了
-  <title>——首页与分页页需要接站点 tagline 与「第 N 页」后缀，
-  seo-tag 不会生成这个后缀，两者同时输出会出现两个 <title>。
+  <title>——首页需要接站点 tagline，seo-tag 不会生成它，
+  两者同时输出会出现两个 <title>。
   {% endcomment %}
   {% seo title=false %}
 
@@ -36,9 +36,7 @@
   {% endif %}
 
   <title>
-    {% if paginator and paginator.page > 1 %}
-      {{ site.title }} &middot; {{ site.tagline }} &middot; 第 {{ paginator.page }} 页
-    {% elsif page.url == "/" %}
+    {% if page.url == "/" %}
       {{ site.title }} &middot; {{ site.tagline }}
     {% else %}
       {{ page.title }} &middot; {{ site.title }}
