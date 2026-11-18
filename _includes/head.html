@@ -2,12 +2,43 @@
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+  <!-- 字体已本地化：@font-face 与那一份 woff2 子集由 tools/fonts.py 生成（勿手工编辑），
+       原先指向 fonts.googleapis.com 的远程 CSS 已移除——那份 CSS 有 330 KB、
+       对应 3 字重 × 101 个分片，是全站最大的首屏阻塞项；现在是 1 个请求、约 840 KB。 -->
+  <link rel="stylesheet" href="{{ '/assets/css/fonts.css' | relative_url }}">
   <!-- Enable responsiveness on mobile devices-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
+  {% comment %}
+  SEO 元数据由 jekyll-seo-tag 输出：<title>、description、canonical、
+  og:*、twitter:card 与 JSON-LD。这里传 title=false 是因为下面手写了
+  <title>——首页与分页页需要接站点 tagline 与「第 N 页」后缀，
+  seo-tag 不会生成这个后缀，两者同时输出会出现两个 <title>。
+  {% endcomment %}
+  {% seo title=false %}
+
+  {% comment %}
+  seo-tag 只在页面 front matter 里有 image 时才输出 og:image（它不读 site.logo，
+  那个只进 JSON-LD 的 publisher）。这里补一个兜底，让没有配图的页面在社交平台
+  上有缩略图；页面写了 image 则交给 seo-tag 输出，避免重复。
+  {% endcomment %}
+  {% unless page.image %}
+  <meta property="og:image" content="{{ site.logo }}">
+  <meta name="twitter:image" content="{{ site.logo }}">
+  {% endunless %}
+
+  {% comment %}
+  jekyll-seo-tag 2.9.1 没有 robots 字段（旧版不支持，2.9.x 仍未加），
+  这里给 404 页手动补 noindex，避免它被收录。
+  {% endcomment %}
+  {% if page.url == "/404.html" %}
+  <meta name="robots" content="noindex">
+  {% endif %}
+
   <title>
-    {% if page.title == "Home" %}
+    {% if paginator and paginator.page > 1 %}
+      {{ site.title }} &middot; {{ site.tagline }} &middot; 第 {{ paginator.page }} 页
+    {% elsif page.url == "/" %}
       {{ site.title }} &middot; {{ site.tagline }}
     {% else %}
       {{ page.title }} &middot; {{ site.title }}

@@ -10,7 +10,8 @@ permalink:        pretty
 title:            '轻文学独立裁判'
 tagline:          'Lighterature Independent Verdiction'
 description:      "I am selecting works of literature that qualify as 'light,' alongside light novels with literary value."
-url:              http://applnow.github.io
+lang:             zh_CN
+url:              https://applnow.github.io
 baseurl:          /
 
 author:
@@ -20,6 +21,10 @@ paginate:         7
 
 # Custom vars
 version:          0.7
+
+# 社交分享缩略图兜底：页面 front matter 里写 image 可逐页覆盖（写完整 URL）。
+# jekyll-seo-tag 会把它输出成 og:image / twitter:image。
+logo:             https://pub-1808029ad8d1476e96cf6889e47c0bf2.r2.dev/blog/your-avatar-87cb8efa.webp
 
 github:
   repo:           https://github.com/Applnow/applnow.github.io.git
