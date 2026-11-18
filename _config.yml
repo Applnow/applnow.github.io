@@ -5,7 +5,6 @@ safe: true
 
 # Permalinks
 permalink:        pretty
-relative_permalinks: false
 
 # Setup
 title:            '轻文学独立裁判'
@@ -15,8 +14,7 @@ url:              http://applnow.github.io
 baseurl:          /
 
 author:
-  name:           'Mark Otto'
-  url:            https://twitter.com/mdo
+  name:           'Applnow'
 
 paginate:         7
 
@@ -27,5 +25,4 @@ github:
   repo:           https://github.com/Applnow/applnow.github.io.git
 include:
   - images
-  - public/images
 destination: _site
