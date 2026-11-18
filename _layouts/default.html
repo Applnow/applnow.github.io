@@ -12,7 +12,7 @@
     <div class="content container">
       {{ content }}
     </div>
-    <!-- 全局灯箱（Lightbox） -->
+    <!-- 全局灯箱（Lightbox）：全站唯一一份容器，文章内图片与相册共用，行为见 assets/lightbox.js -->
     <div id="global-lightbox" class="lightbox">
       <span class="close">&times;</span>
       <img class="lightbox-content" id="lightbox-img">
@@ -20,6 +20,7 @@
       <a class="prev">&#10094;</a>
       <a class="next">&#10095;</a>
    </div>
+   {% if page.album %}<script src="{{ '/assets/album.js' | relative_url }}"></script>{% endif %}
    <script src="{{ '/assets/lightbox.js' | relative_url }}"></script>
   </body>
 </html>
