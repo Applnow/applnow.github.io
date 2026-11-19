@@ -37,3 +37,7 @@ _img/uploaded.json
 
 # 字体子集脚本的中间产物（下载的分片与字符清单，见 tools/fonts.py）
 _fonts/
+
+# 仅本机使用的说明文档（AGENT.md 原已入库，现已取消跟踪、本地文件保留）
+AGENT.md
+architecture.md
