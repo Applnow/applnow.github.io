@@ -287,10 +287,23 @@ a.sidebar-nav-item:focus {
   font-weight: bold;
   order: 1; /* 确保标题在第一位置 */
   font-family: "KaiTi", "楷体", "STKaiti","BiauKai", "DFKai-SB", "Noto Serif SC","Microsoft JhengHei", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Arial,serif;
+  /* 悬停反馈与首页底部「回到顶部」按钮同款（.back-to-top a:hover）：反色成深底白字。
+     常态下用一条透明边框占住尺寸，避免 hover 时因出现边框而抖动；
+     padding 用等量负 margin 抵消，标题文字左缘与前方圆点的间距保持原样。 */
+  padding: 0.15rem 0.5rem;
+  margin-left: -0.5rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
-.posts .post .post-title a:hover {
-  color: #268bd2;
+/* 不再用「文字由黑变蓝」，改为与回顶按钮一致的实心反色 */
+.posts .post .post-title a:hover,
+.posts .post .post-title a:focus {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+  text-shadow: none; /* 深底上不需要白描边阴影（.post-title a 的 text-shadow） */
 }
 
 /* 行内元信息容器 */
@@ -500,10 +513,12 @@ body::after {
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
-/* 首页整页长列表底部的回顶链接（首页不再分页，见 index.html） */
+/* 首页整页长列表底部的回顶链接（首页不再分页，见 index.html）。
+   居中：与上方文章标题同处 .content 这一列，text-align: center 即落在标题框的正中轴上
+   （原来靠右，与标题左对齐的排布不同轴）。 */
 .back-to-top {
     margin: 2.5rem 0 0;
-    text-align: right;
+    text-align: center;
     font-size: 0.95rem;
 }
 
