@@ -114,6 +114,13 @@ main .gsc-comment-box-textarea-extras {
   border-width: 0;
 }
 
+/* 光标进到输入区时，giscus 默认套一圈主色蓝（--color-accent-fg）；
+   这里换成与「使用 GitHub 登录」按钮同色的深灰，焦点提示保留、配色与站点一致 */
+#__next .gsc-comment-box-write:focus-within {
+  border-color: #333;
+  box-shadow: 0 0 0 2px #333;
+}
+
 /* 「输入 / 预览」页签条：原本靠一条底边实线与下方内容切开，回复框里换成顶边实线 */
 main .gsc-comment-box-tabs,
 main .gsc-comment .gsc-comment-box-tabs {
@@ -133,7 +140,7 @@ main .gsc-comment .gsc-comment-box-tabs {
 }
 
 #__next .gsc-comment-box-tabs > div > button.color-bg-canvas {
-  box-shadow: inset 0 -2px 0 #268bd2;
+  box-shadow: inset 0 -2px 0 #333;
 }
 
 /* 预览区原本有一条 2px 底边线 */
