@@ -1,15 +1,30 @@
 /*
  * giscus 评论区
  *
- * 与 .related（相关文章）沿用同一套分隔语言：1px #eaeaea 上边框 + 2rem 间距，
- * 让评论区看起来仍是正文的一部分。配色跟随站点：正文底色为纯白
- * （见 poole.css 的 body），所以 giscus 主题取 light，见 _config.yml。
+ * 外观与正文里的插图卡片同一套（见 hyde.css 的 .post-image-card / .post-image-caption，
+ * 灯箱下方的图注也取自同一份 alt）：纯白底，四边不封实线，只在左、右、下三个方向
+ * 留一道浅投影，悬停时整块轻轻上浮、投影加深。
+ * 用纯白而不是半透明白：卡片下方就是正文的纯白底色，半透明反而会透出下层文字，
+ * 边界看着是脏的。
+ * 评论 iframe 在跨域文档里，站点的 CSS 管不到它，iframe 内部同一套观感由
+ * assets/css/giscus-theme.css 实现，主题参数见 _config.yml。
  */
 
 .comments {
   margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid #eaeaea;
+  /* 白底需要内边距，否则卡片边界会贴住「评论」标题和 iframe */
+  padding: 1.25rem 1.25rem 1.5rem;
+  background: #fff;
+  border-radius: 8px; /* 与 .post-image-card 相同的圆角 */
+  /* 左右下三方各一道投影，顶边不画，与上方正文自然衔接 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .1);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+/* 响应动画与插图卡片一致：上浮 3px、投影同时加深 */
+.comments:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, .15);
 }
 
 .comments-title {

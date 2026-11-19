@@ -12,6 +12,10 @@ giscus 免数据库、免运维、永久免费，评论数据存在本仓库的 
 个别页面不想要评论时，在其 front matter 里写 comments: false 即可。
 
 配置集中在 _config.yml 的 giscus 段，各项含义见 README「评论系统」一节。
+主题：theme 填 'custom' 时改用本站的 assets/css/giscus-theme.css（自定义主题要写全
+变量，未定义的变量不会回退到 light 主题）；其他取值（light / dark / …）按 giscus
+内置主题名原样传出。giscus 会把 data-theme 当 URL 交给评论 iframe 自行拉取，
+所以自定义主题的文件必须放在能被跨域访问的地方（GitHub Pages 带 CORS 头，没问题）。
 repo_id 与 category_id 是 giscus 的必填项，任一为空就整块不渲染，这样在 GitHub
 侧尚未配置完成时，页面不会留下一个空的“评论”标题。注意 Liquid 里空字符串是
 真值，判断空缺必须显式与 '' 比较，不能只写 if gc.category_id。
@@ -19,6 +23,10 @@ repo_id 与 category_id 是 giscus 的必填项，任一为空就整块不渲染
 {%- assign gc = site.giscus -%}
 {%- assign gc_repo_id = gc.repo_id | default: '' | strip -%}
 {%- assign gc_category_id = gc.category_id | default: '' | strip -%}
+{%- assign gc_theme = gc.theme | default: 'light' | strip -%}
+{%- if gc_theme == 'custom' -%}
+  {%- assign gc_theme = '/assets/css/giscus-theme.css' | absolute_url -%}
+{%- endif -%}
 {%- if gc_repo_id != '' and gc_category_id != '' and page.comments != false %}
 <section class="comments" id="comments">
   <h2 class="comments-title">评论</h2>
@@ -35,7 +43,7 @@ repo_id 与 category_id 是 giscus 的必填项，任一为空就整块不渲染
           data-reactions-enabled="{{ gc.reactions_enabled | default: '1' }}"
           data-emit-metadata="0"
           data-input-position="{{ gc.input_position | default: 'bottom' }}"
-          data-theme="{{ gc.theme | default: 'light' }}"
+          data-theme="{{ gc_theme }}"
           data-lang="{{ gc.lang | default: 'zh-CN' }}"
           data-loading="lazy"
           crossorigin="anonymous"

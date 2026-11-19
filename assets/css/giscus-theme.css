@@ -1,0 +1,175 @@
+/*
+ * giscus 自定义主题：配色对齐本站 hyde 主题
+ *
+ * 为什么需要单独一份：giscus 的评论区在跨域 iframe 里，站点的 CSS 管不到它，
+ * 只能把本文件的 URL 交给 giscus 自己注入（_config.yml 的 giscus.theme 写 'custom'
+ * 时，_includes/comments.html 会把绝对 URL 传给 data-theme）。
+ *
+ * 变量名与结构照搬 giscus 内置的 light 主题（这些变量来自 GitHub Primer，
+ * MIT 许可，Copyright (c) 2018 GitHub Inc.）。颜色值换成站点的 Solarized 蓝 + 灰阶：
+ * 主色 #268bd2（悬停 #1c7199，与正文 a:hover 一致），文字 #222 / #333 / #666 / #888，
+ * 分隔线 #eaeaea / #f0f0f0，底色纯白 —— 取值出处见 hyde.css、poole.css 与 about.md 内嵌样式。
+ * 两组例外，都不改：
+ *   1. 语法高亮变量（--color-prettylights-syntax-*）保留 Primer 原值：站内代码块用的是
+ *      Rouge 配色（syntax.css），评论里的代码块极少，不值得再对齐一套；
+ *   2. 字体不指定：iframe 内取不到站点那份 839 KB 的子集字体，回退到系统宋体只会更不统一。
+ * 变量必须写全（未定义的变量不会回退到 light 主题，只会让对应元素失去颜色）。
+ */
+
+main {
+  /* 语法高亮（Primer 原值，见文件头说明） */
+  --color-prettylights-syntax-comment: #6e7781; --color-prettylights-syntax-constant: #0550ae; --color-prettylights-syntax-entity: #8250df;
+  --color-prettylights-syntax-storage-modifier-import: #24292f; --color-prettylights-syntax-entity-tag: #116329; --color-prettylights-syntax-keyword: #cf222e;
+  --color-prettylights-syntax-string: #0a3069; --color-prettylights-syntax-variable: #953800; --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
+  --color-prettylights-syntax-invalid-illegal-text: #f6f8fa; --color-prettylights-syntax-invalid-illegal-bg: #82071e; --color-prettylights-syntax-carriage-return-text: #f6f8fa;
+  --color-prettylights-syntax-carriage-return-bg: #cf222e; --color-prettylights-syntax-string-regexp: #116329; --color-prettylights-syntax-markup-list: #3b2300;
+  --color-prettylights-syntax-markup-heading: #0550ae; --color-prettylights-syntax-markup-italic: #24292f; --color-prettylights-syntax-markup-bold: #24292f;
+  --color-prettylights-syntax-markup-deleted-text: #82071e; --color-prettylights-syntax-markup-deleted-bg: #ffebe9; --color-prettylights-syntax-markup-inserted-text: #116329;
+  --color-prettylights-syntax-markup-inserted-bg: #dafbe1; --color-prettylights-syntax-markup-changed-text: #953800; --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
+  --color-prettylights-syntax-markup-ignored-text: #eaeef2; --color-prettylights-syntax-markup-ignored-bg: #0550ae; --color-prettylights-syntax-meta-diff-range: #8250df;
+  --color-prettylights-syntax-brackethighlighter-angle: #57606a; --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f; --color-prettylights-syntax-constant-other-reference-link: #0a3069;
+
+  /* 普通按钮：与首页「回到顶部」按钮同款——白底、细灰边、悬停加深（见 .back-to-top a） */
+  --color-btn-text: #333; --color-btn-bg: #fff; --color-btn-border: #e0e0e0;
+  --color-btn-shadow: 0 1px 0 rgba(0, 0, 0, .04); --color-btn-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, .4);
+  --color-btn-hover-bg: #f0f0f0; --color-btn-hover-border: #d5d5d5;
+  --color-btn-active-bg: #e8e8e8; --color-btn-active-border: #cfcfcf; --color-btn-selected-bg: #eaeaea;
+
+  /* 主按钮（「使用 GitHub 登录」、发送评论）：黑底白字，与站点里标题悬停、
+     「回到顶部」悬停的反色同一套（常态 #333，悬停加深到 #000） */
+  --color-btn-primary-text: #fff; --color-btn-primary-bg: #333; --color-btn-primary-border: #333;
+  --color-btn-primary-shadow: 0 1px 0 rgba(0, 0, 0, .12); --color-btn-primary-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, .12);
+  --color-btn-primary-hover-bg: #000; --color-btn-primary-hover-border: #000;
+  --color-btn-primary-selected-bg: #000; --color-btn-primary-selected-shadow: inset 0 1px 0 rgba(255, 255, 255, .16);
+  --color-btn-primary-disabled-text: rgba(255, 255, 255, .65); --color-btn-primary-disabled-bg: #9a9a9a; --color-btn-primary-disabled-border: #9a9a9a;
+
+  /* 列表项悬停、分段控件 */
+  --color-action-list-item-default-hover-bg: rgba(38, 139, 210, .08);
+  --color-segmented-control-bg: #f0f0f0; --color-segmented-control-button-bg: #fff; --color-segmented-control-button-selected-border: #268bd2;
+
+  /* 文字与画布 */
+  --color-fg-default: #222; --color-fg-muted: #666; --color-fg-subtle: #888;
+  --color-canvas-default: #fff; --color-canvas-overlay: #fff; --color-canvas-inset: #f7f7f7; --color-canvas-subtle: #f7f7f7;
+
+  /* 边框与中性遮罩（站点分隔线为 #eaeaea / #f0f0f0，控件边框略深一点以保证可见） */
+  --color-border-default: #e0e0e0; --color-border-muted: #f0f0f0; --color-neutral-muted: rgba(240, 240, 240, .6);
+
+  /* 主色：站点链接色 #268bd2 */
+  --color-accent-fg: #268bd2; --color-accent-emphasis: #268bd2;
+  --color-accent-muted: rgba(38, 139, 210, .4); --color-accent-subtle: rgba(38, 139, 210, .1);
+
+  /* 语义色（成功 / 提醒 / 危险）保留 Primer 原值：站点没有对应色，改动只会失去语义 */
+  --color-success-fg: #1a7f37; --color-attention-fg: #9a6700; --color-attention-muted: #d4a72c66; --color-attention-subtle: #fff8c5;
+  --color-danger-fg: #d1242f; --color-danger-muted: #ff818266; --color-danger-subtle: #ffebe9;
+
+  --color-primer-shadow-inset: inset 0 1px 0 rgba(224, 224, 224, .2);
+  --color-scale-gray-1: #f0f0f0; --color-scale-blue-1: rgba(38, 139, 210, .2);
+
+  /* 评论上的 emoji 反应（评论点赞）底色 */
+  --color-social-reaction-bg-hover: var(--color-scale-gray-1);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
+}
+
+/* 加载态图形与内置 light 主题保持一致（giscus 默认值，未改动） */
+main .pagination-loader-container {
+  background-image: url(https://github.com/images/modules/pulls/progressive-disclosure-line.svg);
+}
+
+main .gsc-loading-image {
+  background-image: url(https://github.githubassets.com/images/mona-loading-default.gif);
+}
+
+/* ---------- 元素级微调 ----------
+ * giscus 自己的样式表在主题文件之后加载（见 widget 页面的 <link> 顺序），同特异性时
+ * 后者胜出，所以下面的覆盖都加 main 前缀提高特异性；而 Tailwind 那批工具类
+ * （.border / .rounded-t …）在 giscus 侧带 #__next 前缀，ID 权重压过任何普通类组合，
+ * 要改这类工具类就必须同样带上 #__next，叠多少个 class 都没用。
+ * 目标：giscus 自带的实线边框一律去掉，换成站点这一套「只勾左、右、下三边」的细线
+ * （与 assets/css/giscus.css 的评论区容器同源），四边封闭的框一个都不留。
+ */
+
+main {
+  /* 站点统一的勾边阴影：三边各一条 1px 无模糊线，顶边不画 */
+  --site-edge-shadow: -1px 0 0 #e0e0e0, 1px 0 0 #e0e0e0, 0 1px 0 #e0e0e0;
+  /* iframe 里没有内边距，勾边阴影会被 iframe 边界裁掉，这里给四周留出 1px 以上的空隙 */
+  padding: 0 4px 4px;
+}
+
+/* 评论框：原本是四边 1px 实线，边框去掉，顶层的那个改用三边细线界定。
+   这里必须带上 #__next 和 :not()：giscus 用的就是 :not()（按两个类计权重），
+   同一个元素上还可能带 Tailwind 的 .border（带 #__next 前缀，ID 权重更高），
+   只写 main + 单个类两个都压不过 */
+main .gsc-comment-box {
+  border-radius: 4px;
+}
+
+#__next .gsc-comment-box:not(.gsc-comment-box-is-reply) {
+  border-width: 0;
+  box-shadow: var(--site-edge-shadow);
+}
+
+/* 输入区与它下方那条工具栏原本各自描边（四边 1px、底边虚线），现在整块只由上一条阴影界定 */
+main .gsc-comment-box-textarea,
+main .gsc-comment-box-textarea-extras {
+  border-width: 0;
+}
+
+/* 「输入 / 预览」页签条：原本靠一条底边实线与下方内容切开，回复框里换成顶边实线 */
+main .gsc-comment-box-tabs,
+main .gsc-comment .gsc-comment-box-tabs {
+  border-width: 0;
+}
+
+/* 页签外层原本上移 1px 去压住页签条那条底边（mb-[-1px]），底线没了这个位移也就多余 */
+#__next .gsc-comment-box-tabs > div {
+  margin-bottom: 0;
+}
+
+/* 两个页签原先是「上、左、右三边实线 + 白底」的页签形状，边框去掉；
+   选中态改用站点主色的一条底线标记，未选中的那条则只靠次要文字色区分 */
+#__next .gsc-comment-box-tabs > div > button {
+  border-width: 0;
+  border-radius: 4px 4px 0 0;
+}
+
+#__next .gsc-comment-box-tabs > div > button.color-bg-canvas {
+  box-shadow: inset 0 -2px 0 #268bd2;
+}
+
+/* 预览区原本有一条 2px 底边线 */
+main .gsc-comment-box-preview {
+  border-width: 0;
+}
+
+/* 每条评论原本是一张四边 1px 实线的白卡片 */
+#__next .gsc-comment > div {
+  border-width: 0;
+  border-radius: 4px;
+  box-shadow: var(--site-edge-shadow);
+}
+
+/* 自己发的那条评论，giscus 原本靠蓝框标记（.color-box-border-info）；
+   框去掉后这条线索不能丢，换成同色的一套三边细线 */
+#__next .gsc-comment > div.color-box-border-info {
+  box-shadow: -1px 0 0 #268bd2, 1px 0 0 #268bd2, 0 1px 0 #268bd2;
+}
+
+/* 折叠态的评论原本靠一条底边线收尾 */
+main .gsc-comment-content.minimized {
+  border-width: 0;
+}
+
+/* 回复列表（浅灰底）原本有一条顶边线 */
+main .gsc-replies {
+  border-width: 0;
+}
+
+/* 「写回复」提示条与它里面那个按钮原来各有一条实线边框 */
+main .gsc-reply-box {
+  border-width: 0;
+}
+
+#__next .gsc-reply-box > button {
+  border-width: 0;
+  box-shadow: var(--site-edge-shadow);
+}

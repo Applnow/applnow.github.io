@@ -41,7 +41,10 @@ giscus:
   strict:            '0'
   reactions_enabled: '1'         # 1 开启评论点赞（GitHub emoji 反应）
   input_position:    'bottom'
-  theme:             'light'
+  # 主题：内置主题名（light / dark / preferred_color_scheme / noborder_light …），
+  # 或 'custom' —— 表示用本站的 assets/css/giscus-theme.css（配色与 hyde 一致，
+  # 详见该文件头部说明；comments.html 会把它的绝对 URL 交给 giscus）。
+  theme:             'custom'
   lang:              'zh-CN'
 
 include:
